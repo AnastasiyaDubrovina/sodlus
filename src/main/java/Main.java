@@ -2,15 +2,14 @@ import java.util.*;
 
 public class Main {
     static HashMap<String, Integer> rim2arab = new HashMap<>();
-    static HashMap<Integer, String> arab2rim = new HashMap<>();
     public static void main(String[] args) {
         convertRim2Arab();
-        convertArab2Rim();
         System.out.println("Введите выражение:");
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
         System.out.println(calc(input));
     }
+
     public static String calc(String input) {
         String[] elements = input.split(" ");
         if (elements.length > 3) {
@@ -30,7 +29,13 @@ public class Main {
             if (value < 1) {
                 throw new IllegalStateException("Unexpected value");
             }
-            return arab2rim.get(value);
+            String result = "";
+            for (Map.Entry<String, Integer> entry : rim2arab.entrySet()) {
+                if(entry.getValue().equals(value)) {
+                    result = entry.getKey();
+                }
+            }
+            return result;
         } else if (Integer.parseInt(elements[0]) > 0 && Integer.parseInt(elements[0]) <= 10 &&
                 Integer.parseInt(elements[2]) > 0 && Integer.parseInt(elements[2]) <= 10) {
             int a = Integer.parseInt(elements[0]);
@@ -47,54 +52,7 @@ public class Main {
             throw new IllegalStateException("Unexpected value");
         }
     }
-    public static void convertArab2Rim() {
-        arab2rim.put(1, "I");
-        arab2rim.put(2, "II");
-        arab2rim.put(3, "III");
-        arab2rim.put(4, "IV");
-        arab2rim.put(5, "V");
-        arab2rim.put(6, "VI");
-        arab2rim.put(7, "VII");
-        arab2rim.put(8, "VIII");
-        arab2rim.put(9, "IX");
-        arab2rim.put(10, "X");
-        arab2rim.put(11, "XI");
-        arab2rim.put(12, "XII");
-        arab2rim.put(13, "XIII");
-        arab2rim.put(14, "XIV");
-        arab2rim.put(15, "XV");
-        arab2rim.put(16, "XVI");
-        arab2rim.put(17, "XVII");
-        arab2rim.put(18, "XVIII");
-        arab2rim.put(19, "XIX");
-        arab2rim.put(20, "XX");
-        arab2rim.put(21, "XXI");
-        arab2rim.put(24, "XXIV");
-        arab2rim.put(25, "XXV");
-        arab2rim.put(27, "XXVII");
-        arab2rim.put(28, "XXVIII");
-        arab2rim.put(30, "XXX");
-        arab2rim.put(32, "XXXII");
-        arab2rim.put(36, "XXXVI");
-        arab2rim.put(40, "XL");
-        arab2rim.put(35, "XXXV");
-        arab2rim.put(45, "XLV");
-        arab2rim.put(50, "L");
-        arab2rim.put(42, "XLII");
-        arab2rim.put(48, "XLVIII");
-        arab2rim.put(54, "LIV");
-        arab2rim.put(60, "LX");
-        arab2rim.put(49, "XLIX");
-        arab2rim.put(56, "LVI");
-        arab2rim.put(63, "LXIII");
-        arab2rim.put(70, "LXX");
-        arab2rim.put(64, "LXIV");
-        arab2rim.put(72, "LXXII");
-        arab2rim.put(80, "LXXX");
-        arab2rim.put(81, "LXXXI");
-        arab2rim.put(90, "XC");
-        arab2rim.put(100, "C");
-    }
+
     public static void convertRim2Arab() {
         rim2arab.put("I", 1);
         rim2arab.put("II", 2);
@@ -106,5 +64,41 @@ public class Main {
         rim2arab.put("VIII", 8);
         rim2arab.put("IX", 9);
         rim2arab.put("X", 10);
+        rim2arab.put("XI", 11);
+        rim2arab.put("XII", 12);
+        rim2arab.put("XIII", 13);
+        rim2arab.put("XIV", 14);
+        rim2arab.put("XV", 15);
+        rim2arab.put("XVI", 16);
+        rim2arab.put("XVII", 17);
+        rim2arab.put("XVIII", 18);
+        rim2arab.put("XIX", 19);
+        rim2arab.put("XX", 20);
+        rim2arab.put("XXI", 21);
+        rim2arab.put("XXIV", 24);
+        rim2arab.put("XXV", 25);
+        rim2arab.put("XXVII", 26);
+        rim2arab.put("XXVIII", 28);
+        rim2arab.put("XXX", 30);
+        rim2arab.put("XXXII", 32);
+        rim2arab.put("XXXVI", 36);
+        rim2arab.put("XL", 40);
+        rim2arab.put("XXXV", 35);
+        rim2arab.put("XLV", 45);
+        rim2arab.put("L", 50);
+        rim2arab.put("XLII", 42);
+        rim2arab.put("XLVIII", 48);
+        rim2arab.put("LIV", 54);
+        rim2arab.put("LX", 60);
+        rim2arab.put("XLIX", 49);
+        rim2arab.put("LVI", 56);
+        rim2arab.put("LXIII", 63);
+        rim2arab.put("LXX", 70);
+        rim2arab.put("LXIV", 64);
+        rim2arab.put("LXXII", 72);
+        rim2arab.put("LXXX", 80);
+        rim2arab.put("LXXXI", 81);
+        rim2arab.put("XC", 90);
+        rim2arab.put("C", 100);
     }
 }
